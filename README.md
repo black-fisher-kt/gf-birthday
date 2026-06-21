@@ -3,7 +3,7 @@
 ## Photos Kaise Add Karo
 
 ### Step 1 — gf ki photos
-`images/trisha/` folder mein daalo:
+`images/gf-pic/` folder mein daalo:
 - `pic 1.jpg`
 - `pic2.jpg`
 - `pic3.jpg`
