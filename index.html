@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>Happy Birthday Trisha 🎀</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <style>
+
+/* ─── RESET ─────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#fff5f7;font-family:'Lato',sans-serif}
+
+/* ─── SCREENS ────────────────────────────────────── */
+.screen{
+  position:fixed;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .7s ease;
+  overflow:hidden;
+}
+.screen.active{opacity:1;pointer-events:all}
+.screen.out{opacity:0;pointer-events:none}
+
+/* ─── PARTICLES ──────────────────────────────────── */
+#particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.petal{position:absolute;border-radius:50% 0 50% 0;opacity:0;animation:petalFall linear infinite}
+@keyframes petalFall{
+  0%{transform:translateY(-40px) rotate(0deg) translateX(0);opacity:0}
+  5%{opacity:.7}
+  95%{opacity:.4}
+  100%{transform:translateY(110vh) rotate(720deg) translateX(60px);opacity:0}
+}
+
+/* ─── CONFETTI ───────────────────────────────────── */
+#confetti-canvas{position:fixed;inset:0;pointer-events:none;z-index:9999}
+
+/* ══════════════════════════════════════════════════
+   SCREEN 1  —  TRISHA REVEAL
+══════════════════════════════════════════════════ */
+#s1{background:linear-gradient(160deg,#fff5f7 0%,#ffe8ef 50%,#fff0f5 100%)}
+
+.s1-inner{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;
+  gap:0;width:100%;max-width:440px;padding:0 20px;
+}
+
+/* top eyebrow */
+.s1-eyebrow{
+  font-family:'Lato',sans-serif;font-size:.7rem;
+  letter-spacing:.35em;color:#e8a0b4;text-transform:uppercase;
+  margin-bottom:20px;
+}
+
+/* photo circle */
+.trisha-photo-ring{
+  width:clamp(160px,40vw,220px);
+  height:clamp(160px,40vw,220px);
+  border-radius:50%;
+  border:3px solid #f9c6d8;
+  box-shadow:0 0 0 6px rgba(249,198,216,.25), 0 16px 48px rgba(220,80,120,.15);
+  overflow:hidden;
+  margin-bottom:24px;
+  position:relative;
+  background:#fce4ec;
+}
+.trisha-photo-ring img{width:100%;height:100%;object-fit:cover;display:block}
+.trisha-photo-ring .ph-placeholder{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;color:#e8a0b4;font-size:.75rem;letter-spacing:.08em;text-align:center;padding:20px;
+}
+.trisha-photo-ring .ph-placeholder .icon{font-size:2.5rem;display:block}
+
+/* name */
+.s1-name{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(2.2rem,9vw,3.4rem);
+  color:#c2185b;
+  margin-bottom:4px;
+  text-shadow:0 2px 12px rgba(194,24,91,.15);
+}
+.s1-tagline{
+  font-size:.82rem;color:#e8a0b4;letter-spacing:.12em;
+  margin-bottom:36px;
+}
+
+/* gift box */
+.gift-area{display:flex;flex-direction:column;align-items:center;gap:14px}
+.gift-box{
+  position:relative;width:110px;height:120px;
+  cursor:pointer;
+  filter:drop-shadow(0 8px 24px rgba(233,30,140,.25));
+  transition:transform .2s;
+}
+.gift-box:hover{transform:scale(1.07) rotate(-1deg)}
+.gift-box:active{transform:scale(.96)}
+
+.g-lid{
+  position:absolute;top:0;left:-6px;
+  width:122px;height:40px;
+  background:linear-gradient(135deg,#f48fb1,#e91e8c);
+  border-radius:8px;
+  z-index:3;
+  transition:transform .8s cubic-bezier(.34,1.56,.64,1),opacity .5s;
+  transform-origin:top center;
+}
+.g-lid::after{
+  content:'';position:absolute;left:50%;top:0;bottom:0;
+  width:22px;transform:translateX(-50%);
+  background:rgba(255,255,255,.22);
+}
+.g-body{
+  position:absolute;bottom:0;left:0;
+  width:110px;height:88px;
+  background:linear-gradient(135deg,#f06292,#e91e8c);
+  border-radius:4px 4px 12px 12px;overflow:hidden;
+}
+.g-body::before{
+  content:'';position:absolute;left:50%;top:0;bottom:0;
+  width:22px;transform:translateX(-50%);
+  background:rgba(255,255,255,.18);
+}
+.g-body::after{
+  content:'';position:absolute;top:22px;left:0;right:0;
+  height:22px;background:rgba(255,255,255,.18);
+}
+.g-shine{
+  position:absolute;top:10px;left:14px;
+  width:24px;height:11px;
+  background:rgba(255,255,255,.3);
+  border-radius:50%;transform:rotate(-30deg);
+}
+
+.g-bow{
+  position:absolute;top:-22px;left:50%;
+  transform:translateX(-50%);
+  width:60px;height:30px;
+  z-index:4;
+}
+.g-bow::before,.g-bow::after{
+  content:'';position:absolute;top:4px;
+  width:26px;height:22px;
+  background:linear-gradient(135deg,#ff80ab,#f50057);
+  border-radius:50% 50% 0 50%;
+  box-shadow:0 2px 8px rgba(245,0,87,.25);
+}
+.g-bow::before{left:0;transform:rotate(-25deg)}
+.g-bow::after{right:0;transform:rotate(25deg) scaleX(-1)}
+.g-bow-center{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:14px;height:14px;
+  background:#e91e8c;border-radius:50%;
+  box-shadow:0 0 10px rgba(233,30,140,.5);
+  z-index:5;
+}
+
+.tap-hint{
+  font-size:.75rem;color:#e8a0b4;letter-spacing:.15em;
+  animation:hint 2.2s ease-in-out infinite;
+}
+@keyframes hint{0%,100%{opacity:.35}50%{opacity:1}}
+
+/* ══════════════════════════════════════════════════
+   SCREEN 2  —  TEDDY RUNS AWAY
+══════════════════════════════════════════════════ */
+#s2{background:linear-gradient(160deg,#fff5f7 0%,#fce4ec 100%)}
+
+.s2-inner{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;gap:28px;padding:0 28px;
+}
+
+.s2-funny{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.3rem,5vw,2rem);
+  color:#c2185b;font-style:italic;
+  line-height:1.55;
+  max-width:420px;
+}
+.s2-funny .small{
+  display:block;font-size:clamp(.85rem,3vw,1.1rem);
+  color:#e8a0b4;font-style:normal;
+  font-family:'Lato',sans-serif;margin-top:10px;letter-spacing:.04em;
+}
+
+.teddy-runner{
+  position:relative;
+  animation:teddyIdle 3s ease-in-out infinite;
+}
+@keyframes teddyIdle{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-10px) rotate(1deg)}}
+
+#teddyRun{width:clamp(130px,35vw,190px);height:auto}
+
+.retry-btn{
+  background:linear-gradient(135deg,#f48fb1,#e91e8c);
+  border:none;color:#fff;
+  padding:15px 42px;border-radius:50px;
+  font-family:'Lato',sans-serif;font-size:.95rem;
+  letter-spacing:.08em;cursor:pointer;
+  box-shadow:0 6px 24px rgba(233,30,140,.3);
+  transition:all .3s;font-weight:400;
+}
+.retry-btn:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(233,30,140,.35)}
+.retry-btn:active{transform:scale(.97)}
+
+/* ══════════════════════════════════════════════════
+   SCREEN 3  —  BIRTHDAY + MEMORIES
+══════════════════════════════════════════════════ */
+#s3{
+  background:linear-gradient(170deg,#fff5f7 0%,#fce4ec 60%,#fff0f5 100%);
+  overflow-y:auto;overflow-x:hidden;
+  align-items:flex-start;justify-content:flex-start;
+}
+
+.s3-inner{
+  position:relative;z-index:2;
+  width:100%;max-width:500px;
+  margin:0 auto;
+  padding:50px 22px 60px;
+  display:flex;flex-direction:column;align-items:center;
+  gap:0;
+}
+
+/* HB heading */
+.hb-top{
+  font-family:'Lato',sans-serif;font-size:.68rem;
+  letter-spacing:.32em;color:#e8a0b4;
+  text-transform:uppercase;margin-bottom:12px;text-align:center;
+}
+.hb-big{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(2.6rem,10vw,4.2rem);
+  color:#c2185b;text-align:center;
+  text-shadow:0 4px 20px rgba(194,24,91,.12);
+  line-height:1;margin-bottom:6px;
+}
+.hb-name-big{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,8vw,3.2rem);
+  font-style:italic;font-weight:600;
+  text-align:center;
+  color:#ad1457;
+  margin-bottom:50px;
+}
+
+/* slide cards */
+.slides-wrap{
+  width:100%;
+  display:flex;flex-direction:column;
+  gap:48px;
+}
+
+.slide-card{
+  width:100%;
+  display:flex;flex-direction:column;
+  align-items:center;gap:0;
+  opacity:0;transform:translateY(40px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+.slide-card.visible{opacity:1;transform:translateY(0)}
+
+.slide-img-wrap{
+  width:100%;
+  border-radius:24px 24px 0 0;
+  overflow:hidden;
+  border:1.5px solid rgba(249,198,216,.6);
+  border-bottom:none;
+  box-shadow:0 12px 40px rgba(194,24,91,.1);
+}
+.slide-img-wrap img{
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  display:block;
+}
+.slide-img-wrap .no-img{
+  width:100%;aspect-ratio:4/3;
+  background:linear-gradient(135deg,#fce4ec,#f8bbd0);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;color:#e8a0b4;
+}
+.no-img .ni-icon{font-size:2.8rem}
+.no-img .ni-text{font-size:.78rem;letter-spacing:.08em;opacity:.7}
+
+.slide-caption{
+  width:100%;
+  background:#fff;
+  border:1.5px solid rgba(249,198,216,.5);
+  border-top:none;
+  border-radius:0 0 24px 24px;
+  padding:20px 22px 22px;
+  text-align:center;
+}
+.slide-caption p{
+  font-family:'Lato',sans-serif;
+  font-size:.92rem;
+  color:#7b3a52;
+  line-height:1.9;
+  font-weight:300;
+}
+.slide-caption .quote-mark{
+  font-family:'Playfair Display',serif;
+  font-size:3rem;color:#f9c6d8;
+  line-height:.5;display:block;margin-bottom:6px;
+}
+
+/* TEDDY SECTION */
+.teddy-section{
+  width:100%;
+  margin-top:56px;
+  display:flex;flex-direction:column;
+  align-items:center;gap:20px;
+  opacity:0;transform:translateY(40px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+.teddy-section.visible{opacity:1;transform:translateY(0)}
+
+.teddy-label{
+  font-family:'Lato',sans-serif;
+  font-size:.7rem;letter-spacing:.28em;
+  color:#e8a0b4;text-transform:uppercase;
+  margin-bottom:4px;
+}
+.teddy-msg-s3{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(1.3rem,5vw,1.9rem);
+  color:#c2185b;text-align:center;
+  line-height:1.5;
+}
+
+#teddyS3{
+  width:clamp(140px,38vw,200px);
+  cursor:pointer;
+  transition:transform .25s;
+  filter:drop-shadow(0 8px 20px rgba(233,30,140,.2));
+  animation:teddyIdle 3.5s ease-in-out infinite;
+}
+#teddyS3:hover{transform:scale(1.08) rotate(3deg)}
+#teddyS3:active{transform:scale(.95)}
+
+.teddy-click-hint{
+  font-size:.72rem;color:#e8a0b4;
+  letter-spacing:.12em;
+  animation:hint 2.2s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════════════════
+   SCREEN 4  —  TOGETHER PHOTO + LOVE NOTE
+══════════════════════════════════════════════════ */
+#s4{
+  background:linear-gradient(160deg,#fff5f7 0%,#fce4ec 50%,#fff0f5 100%);
+  overflow-y:auto;overflow-x:hidden;
+  align-items:flex-start;justify-content:flex-start;
+}
+
+.s4-inner{
+  position:relative;z-index:2;
+  width:100%;max-width:500px;
+  margin:0 auto;
+  padding:50px 22px 70px;
+  display:flex;flex-direction:column;
+  align-items:center;gap:32px;
+}
+
+.together-img-wrap{
+  width:100%;
+  border-radius:24px;overflow:hidden;
+  border:2px solid rgba(249,198,216,.6);
+  box-shadow:0 16px 48px rgba(194,24,91,.12);
+}
+.together-img-wrap img{
+  width:100%;aspect-ratio:4/3;
+  object-fit:cover;display:block;
+}
+.together-img-wrap .no-img{
+  width:100%;aspect-ratio:4/3;
+  background:linear-gradient(135deg,#fce4ec,#f8bbd0);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;color:#e8a0b4;
+}
+
+.together-tag{
+  font-family:'Lato',sans-serif;
+  font-size:.68rem;letter-spacing:.28em;
+  color:#e8a0b4;text-transform:uppercase;
+  margin-top:-8px;
+}
+
+.together-quote{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.2rem,4.5vw,1.7rem);
+  color:#c2185b;text-align:center;
+  font-style:italic;line-height:1.6;
+  max-width:380px;
+}
+
+/* love letter */
+.love-letter{
+  width:100%;
+  background:#fff;
+  border:1.5px solid rgba(249,198,216,.5);
+  border-radius:24px;
+  padding:32px 26px;
+  text-align:center;
+  box-shadow:0 8px 32px rgba(194,24,91,.07);
+}
+.ll-heart{font-size:2rem;margin-bottom:16px;display:block}
+.ll-body{
+  font-family:'Lato',sans-serif;
+  font-size:.92rem;color:#7b3a52;
+  line-height:2;font-weight:300;
+}
+.ll-body em{
+  font-family:'Dancing Script',cursive;
+  font-size:1.15rem;color:#c2185b;
+  font-style:normal;
+}
+.ll-div{
+  font-size:1.1rem;color:#f9c6d8;
+  letter-spacing:.5em;margin:20px 0;
+}
+.ll-sign{
+  font-family:'Dancing Script',cursive;
+  font-size:1.4rem;color:#c2185b;
+  line-height:1.7;margin-top:8px;
+}
+
+/* extra note */
+.extra-note{
+  width:100%;text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+}
+.tomorrow-tag{
+  font-size:.7rem;color:#e8a0b4;
+  letter-spacing:.22em;text-transform:uppercase;
+}
+.tomorrow-txt{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(1.1rem,4vw,1.5rem);
+  color:#ad1457;line-height:1.6;text-align:center;
+}
+.masoom-emoji{font-size:1.6rem;display:block;margin-top:4px}
+
+</style>
+</head>
+<body>
+
+<div id="particles"></div>
+<canvas id="confetti-canvas"></canvas>
+
+<!-- ═══ SCREEN 1: TRISHA PHOTO + GIFT ═══ -->
+<div id="s1" class="screen active">
+  <div class="s1-inner">
+    <div class="s1-eyebrow">20 April 2025 — I love you ♥</div>
+
+    <div class="trisha-photo-ring" id="s1Photo">
+      <!-- TRISHA MAIN PHOTO — images/trisha/ folder se pehli image -->
+      <div class="ph-placeholder" id="s1Placeholder">
+        <span class="icon">🌸</span>
+        <span>trisha ki photo<br>images/trisha/ mein daalo</span>
+      </div>
+    </div>
+
+    <div class="s1-name">Trisha</div>
+    <div class="s1-tagline">Meri chottie mata ji &nbsp;✨</div>
+
+    <div class="gift-area">
+      <div class="gift-box" id="giftBox" onclick="giftClick()">
+        <div class="g-bow"><div class="g-bow-center"></div></div>
+        <div class="g-lid" id="gLid"></div>
+        <div class="g-body"><div class="g-shine"></div></div>
+      </div>
+      <p class="tap-hint">tap the gift to open ✨</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SCREEN 2: TEDDY RUNS AWAY ═══ -->
+<div id="s2" class="screen">
+  <div class="s2-inner">
+    <div class="s2-funny">
+      pagal ladki,<br>kuch kaam theek se nahi hota
+      <span class="small">teddy bhaag gayi gift lekar 💨<br>dobara try karooo babyy 🙈</span>
+    </div>
+
+    <div class="teddy-runner">
+      <svg id="teddyRun" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+        <!-- gift box tiny -->
+        <rect x="145" y="140" width="38" height="32" rx="4" fill="#e91e8c"/>
+        <rect x="141" y="134" width="46" height="14" rx="3" fill="#f48fb1"/>
+        <line x1="164" y1="134" x2="164" y2="172" stroke="rgba(255,255,255,.3)" stroke-width="6"/>
+        <!-- shadow -->
+        <ellipse cx="100" cy="212" rx="55" ry="8" fill="rgba(0,0,0,.1)"/>
+        <!-- body -->
+        <ellipse cx="100" cy="162" rx="52" ry="46" fill="#d4a574"/>
+        <ellipse cx="100" cy="175" rx="34" ry="28" fill="#e8c4a0"/>
+        <!-- arms - running pose -->
+        <ellipse cx="44" cy="145" rx="24" ry="13" fill="#c8956c" transform="rotate(-45,44,145)"/>
+        <ellipse cx="152" cy="165" rx="22" ry="12" fill="#c8956c" transform="rotate(20,152,165)"/>
+        <!-- legs running -->
+        <ellipse cx="78" cy="200" rx="18" ry="12" fill="#b07d52" transform="rotate(-20,78,200)"/>
+        <ellipse cx="122" cy="205" rx="18" ry="12" fill="#b07d52" transform="rotate(15,122,205)"/>
+        <!-- head -->
+        <circle cx="100" cy="90" r="52" fill="#d4a574"/>
+        <!-- ears -->
+        <circle cx="57" cy="48" r="20" fill="#c8956c"/>
+        <circle cx="57" cy="48" r="12" fill="#e8b99a"/>
+        <circle cx="143" cy="48" r="20" fill="#c8956c"/>
+        <circle cx="143" cy="48" r="12" fill="#e8b99a"/>
+        <!-- face -->
+        <ellipse cx="100" cy="104" rx="34" ry="26" fill="#e8c4a0"/>
+        <!-- eyes - wide/panicked -->
+        <circle cx="86" cy="80" r="10" fill="#1a0a04"/>
+        <circle cx="114" cy="80" r="10" fill="#1a0a04"/>
+        <circle cx="89" cy="77" r="4" fill="white"/>
+        <circle cx="117" cy="77" r="4" fill="white"/>
+        <!-- sweat drop -->
+        <ellipse cx="135" cy="60" rx="5" ry="7" fill="#90caf9" opacity=".8"/>
+        <!-- blush -->
+        <ellipse cx="74" cy="100" rx="12" ry="8" fill="rgba(255,100,130,.35)"/>
+        <ellipse cx="126" cy="100" rx="12" ry="8" fill="rgba(255,100,130,.35)"/>
+        <!-- nose -->
+        <ellipse cx="100" cy="110" rx="8" ry="5" fill="#7a4a2a"/>
+        <!-- mouth open surprised -->
+        <path d="M90 122 Q100 134 110 122" fill="#6b4423" stroke="none"/>
+        <!-- bow -->
+        <g transform="translate(100,46)">
+          <ellipse cx="-16" cy="0" rx="13" ry="8" fill="#ff6b9d"/>
+          <ellipse cx="16" cy="0" rx="13" ry="8" fill="#ff6b9d"/>
+          <circle cx="0" cy="0" r="6" fill="#e91e8c"/>
+        </g>
+        <!-- speed lines -->
+        <line x1="10" y1="100" x2="38" y2="100" stroke="#f9c6d8" stroke-width="2.5" stroke-linecap="round" opacity=".6"/>
+        <line x1="5" y1="115" x2="30" y2="115" stroke="#f9c6d8" stroke-width="1.5" stroke-linecap="round" opacity=".4"/>
+        <line x1="12" y1="130" x2="35" y2="130" stroke="#f9c6d8" stroke-width="1.5" stroke-linecap="round" opacity=".4"/>
+      </svg>
+    </div>
+
+    <button class="retry-btn" onclick="goS3()">dobara kholoooo 💕</button>
+  </div>
+</div>
+
+<!-- ═══ SCREEN 3: BIRTHDAY + MEMORIES ═══ -->
+<div id="s3" class="screen">
+  <div class="s3-inner">
+
+    <div class="hb-top">26 April — Teri Birthday 🎀</div>
+    <div class="hb-big">Happy Birthday</div>
+    <div class="hb-name-big">Trisha ✨</div>
+
+    <div class="slides-wrap" id="slidesWrap">
+      <!-- slides injected by JS from images/trisha/ -->
+    </div>
+
+    <!-- TEDDY with "pagal, tere liye hi hu" -->
+    <div class="teddy-section" id="teddySection">
+      <div class="teddy-label">ek baat sunni hai?</div>
+      <div class="teddy-msg-s3">pagal,<br>tere liye hi hoon 🐻</div>
+      <svg id="teddyS3" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" onclick="goS4()">
+        <ellipse cx="100" cy="212" rx="55" ry="8" fill="rgba(0,0,0,.08)"/>
+        <ellipse cx="100" cy="165" rx="52" ry="46" fill="#d4a574"/>
+        <ellipse cx="100" cy="178" rx="34" ry="28" fill="#e8c4a0"/>
+        <ellipse cx="44" cy="150" rx="24" ry="14" fill="#c8956c" transform="rotate(-15,44,150)"/>
+        <ellipse cx="156" cy="150" rx="24" ry="14" fill="#c8956c" transform="rotate(15,156,150)"/>
+        <ellipse cx="78" cy="204" rx="18" ry="13" fill="#b07d52"/>
+        <ellipse cx="122" cy="204" rx="18" ry="13" fill="#b07d52"/>
+        <circle cx="100" cy="92" r="52" fill="#d4a574"/>
+        <circle cx="57" cy="50" r="20" fill="#c8956c"/>
+        <circle cx="57" cy="50" r="12" fill="#e8b99a"/>
+        <circle cx="143" cy="50" r="20" fill="#c8956c"/>
+        <circle cx="143" cy="50" r="12" fill="#e8b99a"/>
+        <ellipse cx="100" cy="106" rx="34" ry="26" fill="#e8c4a0"/>
+        <circle cx="86" cy="82" r="8" fill="#1a0a04"/>
+        <circle cx="114" cy="82" r="8" fill="#1a0a04"/>
+        <circle cx="88" cy="80" r="3" fill="white"/>
+        <circle cx="116" cy="80" r="3" fill="white"/>
+        <!-- heart eyes sparkle -->
+        <text x="82" y="76" font-size="10" fill="#e91e8c" text-anchor="middle">✦</text>
+        <text x="118" y="76" font-size="10" fill="#e91e8c" text-anchor="middle">✦</text>
+        <ellipse cx="74" cy="102" rx="12" ry="8" fill="rgba(255,100,130,.4)"/>
+        <ellipse cx="126" cy="102" rx="12" ry="8" fill="rgba(255,100,130,.4)"/>
+        <ellipse cx="100" cy="112" rx="8" ry="5" fill="#7a4a2a"/>
+        <path d="M88 122 Q100 133 112 122" fill="none" stroke="#6b4423" stroke-width="2.5" stroke-linecap="round"/>
+        <g transform="translate(100,48)">
+          <ellipse cx="-16" cy="0" rx="13" ry="8" fill="#ff6b9d"/>
+          <ellipse cx="16" cy="0" rx="13" ry="8" fill="#ff6b9d"/>
+          <circle cx="0" cy="0" r="6" fill="#e91e8c"/>
+        </g>
+        <!-- holding a heart -->
+        <text x="100" y="178" font-size="20" fill="#e91e8c" text-anchor="middle">♥</text>
+      </svg>
+      <div class="teddy-click-hint">click karo toh dekho 👀</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ SCREEN 4: TOGETHER PHOTO + LOVE NOTE ═══ -->
+<div id="s4" class="screen">
+  <div class="s4-inner">
+
+    <div class="together-tag">Hum Dono 💞</div>
+
+    <div class="together-img-wrap" id="togetherImgWrap">
+      <!-- injected by JS -->
+    </div>
+
+    <div class="together-quote">
+      dekh hogi isse pyaari<br>jodi koi? 💕
+    </div>
+
+    <div class="love-letter">
+      <span class="ll-heart">💌</span>
+      <div class="ll-body">
+        meri jaan, teri birthday pe — meri birthday se<br>
+        hamaari story shuru hui.<br><br>
+        <em>20 April</em> ko tujhe pehli baar<br>
+        <em>"I love you"</em> bola tha...<br>
+        kitna dara hua tha main,<br>
+        par tu samajh gayi — aur bas woh kafi tha.<br><br>
+        Tu thodi shy hai — par wohi toh mujhe<br>
+        sabse zyaada pasand hai mere cutu mein.<br><br>
+        <em>meri hi nazar na lage</em> 🧿
+      </div>
+      <div class="ll-div">♥ &nbsp; ♥ &nbsp; ♥</div>
+      <div class="ll-sign">
+        Love, Kiss you Baby<br>
+        sona cutu 💕
+      </div>
+    </div>
+
+    <div class="extra-note">
+      <div class="tomorrow-tag">still love you yw 🤍</div>
+      <div class="tomorrow-txt">
+        kal milne aau? 🥺
+        <span class="masoom-emoji">😇</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ══════════ CONFIG — images auto-load ══════════
+   Agar server pe run ho raha hai, JS folder read karega.
+   GitHub Pages pe static hai, toh images array manually fill hogi.
+   Neeche TRISHA_IMAGES aur TOGETHER_IMAGES mein filenames daalo
+   jaise hi tum GitHub pe photos push karo.
+══════════════════════════════════════════════════ */
+const TRISHA_IMAGES = [
+  /* yahan apni filenames daalo, e.g.: */
+  /* "trisha1.jpg", "trisha2.jpg", "trisha3.jpg" */
+];
+const TRISHA_CAPTIONS = [
+  "jab bhi dekhu tujhe, ek alag hi duniya mein chali jaati hoon — teri muskaan sab kuch bol deti hai 🌸",
+  "tu thodi shy hai, par teri aankhon mein jo hai — woh sirf main dekh sakta hoon 🥺",
+  "mere cutu — tu jab khilkhilaati hai, lagta hai sab theek hai duniya mein 💕",
+];
+const TOGETHER_IMAGES = [
+  /* e.g.: "together1.jpg" */
+];
+
+/* ══════════ PARTICLES ══════════ */
+(function(){
+  const c = document.getElementById('particles');
+  const colors = ['#f9c6d8','#ffb6d9','#fce4ec','#ff80ab'];
+  for(let i=0;i<24;i++){
+    const p=document.createElement('div');p.className='petal';
+    const s=6+Math.random()*10;
+    p.style.cssText=`
+      width:${s}px;height:${s}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      opacity:${.3+Math.random()*.5};
+      left:${Math.random()*100}%;
+      animation-duration:${8+Math.random()*10}s;
+      animation-delay:${Math.random()*8}s;
+      transform:rotate(${Math.random()*360}deg);
+    `;
+    c.appendChild(p);
+  }
+})();
+
+/* ══════════ CONFETTI ══════════ */
+const cvs=document.getElementById('confetti-canvas');
+const ctx=cvs.getContext('2d');
+cvs.width=window.innerWidth;cvs.height=window.innerHeight;
+window.addEventListener('resize',()=>{cvs.width=window.innerWidth;cvs.height=window.innerHeight});
+let confettis=[];
+function spawnConfetti(){
+  const cols=['#ff6b9d','#ffb6d9','#ff4081','#fce4ec','#fff','#ffd700','#e91e8c','#f8bbd0'];
+  for(let i=0;i<120;i++){
+    confettis.push({
+      x:Math.random()*cvs.width,y:-10,
+      vx:(Math.random()-.5)*3,vy:2+Math.random()*4,
+      rot:Math.random()*360,rotv:(Math.random()-.5)*6,
+      size:5+Math.random()*7,
+      col:cols[Math.floor(Math.random()*cols.length)],
+      shape:Math.random()>.5?'rect':'circle',
+      life:1
+    });
+  }
+  rafConfetti();
+}
+function rafConfetti(){
+  ctx.clearRect(0,0,cvs.width,cvs.height);
+  confettis=confettis.filter(p=>p.life>0);
+  confettis.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.rot+=p.rotv;
+    if(p.y>cvs.height+20)p.life=0;
+    ctx.save();ctx.globalAlpha=p.life;
+    ctx.fillStyle=p.col;ctx.translate(p.x,p.y);ctx.rotate(p.rot*Math.PI/180);
+    if(p.shape==='circle'){ctx.beginPath();ctx.arc(0,0,p.size/2,0,Math.PI*2);ctx.fill();}
+    else{ctx.fillRect(-p.size/2,-p.size/3,p.size,p.size*.6);}
+    ctx.restore();
+  });
+  if(confettis.length)requestAnimationFrame(rafConfetti);
+}
+
+/* ══════════ BUILD SCREEN 1 PHOTO ══════════ */
+(function(){
+  const ring=document.getElementById('s1Photo');
+  const ph=document.getElementById('s1Placeholder');
+  if(TRISHA_IMAGES.length>0){
+    const img=document.createElement('img');
+    img.src='images/trisha/'+TRISHA_IMAGES[0];
+    img.alt='Trisha';
+    img.onerror=()=>{ img.remove(); ph.style.display='flex'; };
+    ph.style.display='none';
+    ring.appendChild(img);
+  }
+})();
+
+/* ══════════ BUILD SCREEN 3 SLIDES ══════════ */
+(function(){
+  const wrap=document.getElementById('slidesWrap');
+  if(TRISHA_IMAGES.length===0){
+    // placeholder cards
+    const placeholders=[
+      {icon:'🌸',text:'Trisha ki photo 1'},
+      {icon:'💕',text:'Trisha ki photo 2'},
+      {icon:'✨',text:'Trisha ki photo 3'},
+    ];
+    placeholders.forEach((pl,i)=>{
+      const capt=TRISHA_CAPTIONS[i]||TRISHA_CAPTIONS[0];
+      wrap.innerHTML+=`
+      <div class="slide-card" data-idx="${i}">
+        <div class="slide-img-wrap">
+          <div class="no-img"><span class="ni-icon">${pl.icon}</span><span class="ni-text">${pl.text}<br>images/trisha/ mein daalo</span></div>
+        </div>
+        <div class="slide-caption">
+          <span class="quote-mark">"</span>
+          <p>${capt}</p>
+        </div>
+      </div>`;
+    });
+  } else {
+    TRISHA_IMAGES.forEach((fname,i)=>{
+      const capt=TRISHA_CAPTIONS[i%TRISHA_CAPTIONS.length];
+      wrap.innerHTML+=`
+      <div class="slide-card" data-idx="${i}">
+        <div class="slide-img-wrap">
+          <img src="images/trisha/${fname}" alt="Trisha" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img><span class=ni-icon>🌸</span></div>'"/>
+        </div>
+        <div class="slide-caption">
+          <span class="quote-mark">"</span>
+          <p>${capt}</p>
+        </div>
+      </div>`;
+    });
+  }
+})();
+
+/* ══════════ BUILD SCREEN 4 TOGETHER ══════════ */
+(function(){
+  const wrap=document.getElementById('togetherImgWrap');
+  if(TOGETHER_IMAGES.length>0){
+    wrap.innerHTML=`<img src="images/together/${TOGETHER_IMAGES[0]}" alt="Hum dono" onerror="this.parentNode.innerHTML='<div class=no-img><span class=ni-icon>💑</span><span class=ni-text>together photo</span></div>'"/>`;
+  } else {
+    wrap.innerHTML=`<div class="no-img"><span class="ni-icon">💑</span><span class="ni-text">images/together/ mein photo daalo</span></div>`;
+  }
+})();
+
+/* ══════════ SCREEN SWITCH ══════════ */
+function goScreen(fromId,toId){
+  const from=document.getElementById(fromId);
+  const to=document.getElementById(toId);
+  from.classList.add('out');
+  setTimeout(()=>{from.classList.remove('active','out');to.classList.add('active');},700);
+}
+
+/* ══════════ SCROLL ANIMATE ══════════ */
+function observeCards(){
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:.15});
+  document.querySelectorAll('.slide-card,.teddy-section').forEach(el=>io.observe(el));
+}
+
+/* ══════════ GIFT CLICK ══════════ */
+let giftDone=false;
+function giftClick(){
+  if(giftDone)return;giftDone=true;
+  const lid=document.getElementById('gLid');
+  lid.style.transform='translateY(-60px) rotate(-18deg)';
+  lid.style.opacity='0';
+  setTimeout(()=>goScreen('s1','s2'),700);
+}
+
+/* ══════════ RETRY → S3 ══════════ */
+function goS3(){
+  spawnConfetti();
+  goScreen('s2','s3');
+  setTimeout(observeCards,800);
+}
+
+/* ══════════ TEDDY CLICK → S4 ══════════ */
+function goS4(){
+  spawnConfetti();
+  goScreen('s3','s4');
+}
+</script>
+</body>
+</html>
