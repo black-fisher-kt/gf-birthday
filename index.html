@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-  <title>Happy Birthday Trisha 🎀</title>
+  <title>Happy Birthday gf-name 🎀</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
   <style>
@@ -37,7 +37,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#fff5f7;font-family:
 #confetti-canvas{position:fixed;inset:0;pointer-events:none;z-index:9999}
 
 /* ══════════════════════════════════════════════════
-   SCREEN 1  —  TRISHA REVEAL
+   SCREEN 1  —  gf-name REVEAL
 ══════════════════════════════════════════════════ */
 #s1{background:linear-gradient(160deg,#fff5f7 0%,#ffe8ef 50%,#fff0f5 100%)}
 
@@ -55,7 +55,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#fff5f7;font-family:
 }
 
 /* photo circle */
-.trisha-photo-ring{
+.gf-name-photo-ring{
   width:clamp(160px,40vw,220px);
   height:clamp(160px,40vw,220px);
   border-radius:50%;
@@ -66,13 +66,13 @@ html,body{width:100%;height:100%;overflow:hidden;background:#fff5f7;font-family:
   position:relative;
   background:#fce4ec;
 }
-.trisha-photo-ring img{width:100%;height:100%;object-fit:cover;display:block}
-.trisha-photo-ring .ph-placeholder{
+.gf-name-photo-ring img{width:100%;height:100%;object-fit:cover;display:block}
+.gf-name-photo-ring .ph-placeholder{
   width:100%;height:100%;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:8px;color:#e8a0b4;font-size:.75rem;letter-spacing:.08em;text-align:center;padding:20px;
 }
-.trisha-photo-ring .ph-placeholder .icon{font-size:2.5rem;display:block}
+.gf-name-photo-ring .ph-placeholder .icon{font-size:2.5rem;display:block}
 
 /* name */
 .s1-name{
@@ -453,20 +453,20 @@ html,body{width:100%;height:100%;overflow:hidden;background:#fff5f7;font-family:
 <div id="particles"></div>
 <canvas id="confetti-canvas"></canvas>
 
-<!-- ═══ SCREEN 1: TRISHA PHOTO + GIFT ═══ -->
+<!-- ═══ SCREEN 1: gf-name PHOTO + GIFT ═══ -->
 <div id="s1" class="screen active">
   <div class="s1-inner">
     <div class="s1-eyebrow">20 April 2025 — I love you ♥</div>
 
-    <div class="trisha-photo-ring" id="s1Photo">
-      <!-- TRISHA MAIN PHOTO — images/trisha/ folder se pehli image -->
+    <div class="gf-name-photo-ring" id="s1Photo">
+      <!-- gf-name MAIN PHOTO — images/gf-name/ folder se pehli image -->
       <div class="ph-placeholder" id="s1Placeholder">
         <span class="icon">🌸</span>
-        <span>trisha ki photo<br>images/trisha/ mein daalo</span>
+        <span>gf-name ki photo<br>images/gf-name/ mein daalo</span>
       </div>
     </div>
 
-    <div class="s1-name">Trisha</div>
+    <div class="s1-name">gf-name</div>
     <div class="s1-tagline">Meri chottie mata ji &nbsp;✨</div>
 
     <div class="gift-area">
@@ -551,10 +551,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:#fff5f7;font-family:
 
     <div class="hb-top">22 June — Tera Birthday 🎀</div>
     <div class="hb-big">Happy Birthday</div>
-    <div class="hb-name-big">Trisha ✨</div>
+    <div class="hb-name-big">gf-name ✨</div>
 
     <div class="slides-wrap" id="slidesWrap">
-      <!-- slides injected by JS from images/trisha/ -->
+      <!-- slides injected by JS from images/gf-name/ -->
     </div>
 
     <!-- TEDDY with "pagal, tere liye hi hu" -->
@@ -649,13 +649,13 @@ html,body{width:100%;height:100%;overflow:hidden;background:#fff5f7;font-family:
 /* ══════════ CONFIG — images auto-load ══════════
    Agar server pe run ho raha hai, JS folder read karega.
    GitHub Pages pe static hai, toh images array manually fill hogi.
-   Neeche TRISHA_IMAGES aur TOGETHER_IMAGES mein filenames daalo
+   Neeche gf-name_IMAGES aur TOGETHER_IMAGES mein filenames daalo
    jaise hi tum GitHub pe photos push karo.
 ══════════════════════════════════════════════════ */
-const TRISHA_IMAGES = [
-"trisha1.jpg", "trisha2.jpg"
+const gf-name_IMAGES = [
+"gf1.jpg", "gf-name2.jpg"
 ];
-const TRISHA_CAPTIONS = [
+const gf-name_CAPTIONS = [
   "jab bhi dekhu tujhe, ek alag hi duniya mein chali jaati hoon — teri muskaan sab kuch bol deti hai 🌸",
   "tu thodi shy hai, par teri aankhon mein jo hai — woh sirf main dekh sakta hoon 🥺",
   "mere cutu — tu jab khilkhilaati hai, lagta hai sab theek hai duniya mein 💕",
@@ -724,10 +724,10 @@ function rafConfetti(){
 (function(){
   const ring=document.getElementById('s1Photo');
   const ph=document.getElementById('s1Placeholder');
-  if(TRISHA_IMAGES.length>0){
+  if(gf-name_IMAGES.length>0){
     const img=document.createElement('img');
-    img.src='images/trisha/'+TRISHA_IMAGES[0];
-    img.alt='Trisha';
+    img.src='images/gf-name/'+gf-name_IMAGES[0];
+    img.alt='gf-name';
     img.onerror=()=>{ img.remove(); ph.style.display='flex'; };
     ph.style.display='none';
     ring.appendChild(img);
@@ -737,19 +737,19 @@ function rafConfetti(){
 /* ══════════ BUILD SCREEN 3 SLIDES ══════════ */
 (function(){
   const wrap=document.getElementById('slidesWrap');
-  if(TRISHA_IMAGES.length===0){
+  if(gf-name_IMAGES.length===0){
     // placeholder cards
     const placeholders=[
-      {icon:'🌸',text:'Trisha ki photo 1'},
-      {icon:'💕',text:'Trisha ki photo 2'},
-      {icon:'✨',text:'Trisha ki photo 3'},
+      {icon:'🌸',text:'gf-name ki photo 1'},
+      {icon:'💕',text:'gf-name ki photo 2'},
+      {icon:'✨',text:'gf-name ki photo 3'},
     ];
     placeholders.forEach((pl,i)=>{
-      const capt=TRISHA_CAPTIONS[i]||TRISHA_CAPTIONS[0];
+      const capt=gf-name_CAPTIONS[i]||gf-name_CAPTIONS[0];
       wrap.innerHTML+=`
       <div class="slide-card" data-idx="${i}">
         <div class="slide-img-wrap">
-          <div class="no-img"><span class="ni-icon">${pl.icon}</span><span class="ni-text">${pl.text}<br>images/trisha/ mein daalo</span></div>
+          <div class="no-img"><span class="ni-icon">${pl.icon}</span><span class="ni-text">${pl.text}<br>images/gf-name/ mein daalo</span></div>
         </div>
         <div class="slide-caption">
           <span class="quote-mark">"</span>
@@ -758,12 +758,12 @@ function rafConfetti(){
       </div>`;
     });
   } else {
-    TRISHA_IMAGES.forEach((fname,i)=>{
-      const capt=TRISHA_CAPTIONS[i%TRISHA_CAPTIONS.length];
+    gf-name_IMAGES.forEach((fname,i)=>{
+      const capt=gf-name_CAPTIONS[i%gf-name_CAPTIONS.length];
       wrap.innerHTML+=`
       <div class="slide-card" data-idx="${i}">
         <div class="slide-img-wrap">
-          <img src="images/trisha/${fname}" alt="Trisha" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img><span class=ni-icon>🌸</span></div>'"/>
+          <img src="images/gf-name/${fname}" alt="gf-name" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img><span class=ni-icon>🌸</span></div>'"/>
         </div>
         <div class="slide-caption">
           <span class="quote-mark">"</span>
