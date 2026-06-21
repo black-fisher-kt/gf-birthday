@@ -149,3 +149,4 @@ function loadImg(input, imgId, placeholderId) {
   };
   reader.readAsDataURL(file);
 }
+ 
