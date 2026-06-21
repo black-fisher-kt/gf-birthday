@@ -491,3 +491,4 @@ html, body {
 @media (max-width: 420px) {
   .photos-row { grid-template-columns: 1fr; }
 }
+ 
